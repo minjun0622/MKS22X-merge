@@ -1,13 +1,17 @@
 public class Merge {
 
+  int[] temp;
+
 /*sort the array from least to greatest value. This is a wrapper function*/
 public static void mergesort(int[] data){
-  int[] temp;
   //copying array.
+  /*
+  this for making it faster, learn to get it working first.
   for (int i = 0; i < data.length; i++){
-    data[i] = temp[i];
+    temp[i] = data[i];
   }
-
+  */
+  merge(data, 0, data.length);
 }
 
 private static void merge(int[] data, int lo, int hi) {
@@ -15,20 +19,31 @@ private static void merge(int[] data, int lo, int hi) {
     return;
   }
 
-  if (data.length = 1){
-    return data[0];
-  }
-
   int round;
   if ( (data.length % 2) = 0) {
     round = data.length / 2;
   }
   else {
-    round = data.length / 2 + 1;
+    round = (data.length / 2) + 1;
   }
 
-  merge(data[round], lo - round, hi);
-  merge(data[round], lo, hi - round);
+  for (int i  = 0; i < data.length; i++) {
+    //swapping if the one in the front is greater than the one in the back.
+    if (data[lo] > data[lo + i]) {
+      int count = data[lo];
+      data[lo] = data[lo + i];
+      data[lo + i] = count;
+    }
+    else {
+      /* there's a method called copyOfRange and this gets the copy of an array.
+      cut data[] in half using "round" instance variable.
+      */
+
+    }
+  }
+//when there's two of the same element, just use the left one due to it being more stable.
+  merge(data[hi - round], lo, hi - 1);
+  merge(data[lo + round], lo + 1, hi);
 
 }
 
@@ -41,8 +56,9 @@ private static void printAry(int[] data){
   }
 
 public static void main(String[] args) {
-  int[] monkey = new [4, 5, 2, 1, 3];
+  int[] monkey = {4, 5, 2, 1, 3};
   printAry(monkey);
 }
 //consulting the barron's book soon.
+//barron's book has nothing on it.
 }
