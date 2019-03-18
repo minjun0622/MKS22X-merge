@@ -14,7 +14,7 @@ private static void merge(int[] data, int lo, int hi) {
   if (lo >= hi) {
     return;
   }
-  
+
   if (data.length = 1){
     return data[0];
   }
@@ -27,13 +27,22 @@ private static void merge(int[] data, int lo, int hi) {
     round = data.length / 2 + 1;
   }
 
-  merge(data[round], int lo - round, int hi);
-  merge(data[round], int lo, int hi - round);
+  merge(data[round], lo - round, hi);
+  merge(data[round], lo, hi - round);
 
 }
-public static void main(String[] args) {
-  int[] monkey = new monkey;
 
+private static void printAry(int[] data){
+  String result = "";
+    for (int i = 0; i < data.length; i++){
+      result += data[i] + ", ";
+    }
+    System.out.println(result);
+  }
+
+public static void main(String[] args) {
+  int[] monkey = new [4, 5, 2, 1, 3];
+  printAry(monkey);
 }
 //consulting the barron's book soon.
 }
