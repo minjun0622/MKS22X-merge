@@ -1,3 +1,6 @@
+import java.util.* ;
+import java.io.* ;
+
 public class Merge {
 
   int[] temp;
@@ -37,6 +40,7 @@ private static void merge(int[] data, int lo, int hi) {
     else {
       /* there's a method called copyOfRange and this gets the copy of an array.
       cut data[] in half using "round" instance variable.
+      yes
       */
 
     }
@@ -45,6 +49,27 @@ private static void merge(int[] data, int lo, int hi) {
   merge(data[hi - round], lo, hi - 1);
   merge(data[lo + round], lo + 1, hi);
 
+  /*
+  insertionsort(data[hi - round], lo, hi - 1);
+  insertionsort(data[lo + round], lo + 1, hi);
+  */
+
+}
+
+public static void insertionsort(int[] data, int lo, int hi)  {
+  if (hi < lo) {
+    return;
+  }
+
+  for (int i = 0; i + lo < data.length; i++){
+    //This swaps front and back.
+    if (data[lo] > data[lo + 1]) {
+      int temp = data[lo];
+      data[lo] = data[lo + 1];
+      data[lo + 1] = count;
+    }
+
+  }
 }
 
 private static void printAry(int[] data){
