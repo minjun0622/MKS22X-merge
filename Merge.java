@@ -17,9 +17,11 @@ public static void mergesort(int[] data){
 }
 
 private static void mergesortH(int[] data, int lo, int hi) {
+
   mergesortH(data, lo, (lo + hi) / 2);
   mergesortH(data, (lo + hi) / 2 + 1, hi);
   merge(data, lo, hi);
+}
 }
 
 private static void merge(int[] data, int lo, int hi) {
@@ -37,27 +39,38 @@ private static void merge(int[] data, int lo, int hi) {
         temp[i] = data[b];
         b++;
       }
-      else if (a >= mid) {
+    } else if (a >= mid) {
         temp[i] = data[b];
         b++;
       }
+      else {
+        temp[i] = data[a];
+        a++;
+      }
     }
+
+    int i = lo;
+    for (int x = 0; x < data.length; x++) {
+      data[i] = temp[x];
+      i++;
+    }
+
   }
 
 
 public static void insertionsort(int[] data, int lo, int hi)  {
-  if (hi < lo) {
+  /*if (hi < lo) {
     return;
   }
-
-  for (int i = 0; i + lo < data.length; i++){
-    //This swaps front and back.
-    if (data[lo] > data[lo + 1]) {
-      int temp = data[lo];
-      data[lo] = data[lo + 1];
-      data[lo + 1] = count;
+  */
+  for (int i = lo + 1; i <= hi; i++){
+    int temp = data[i];
+    int count = i;
+    while (count > lo && data[count - 1] > temp) {
+      data[count] = data[count - 1];
+      count--;
     }
-
+    data[count] = temp;
   }
 }
 
@@ -69,10 +82,40 @@ private static void printAry(int[] data){
     System.out.println(result);
   }
 
-public static void main(String[] args) {
-  int[] monkey = {4, 5, 2, 1, 3};
-  printAry(monkey);
-}
+  public static void main(String[]args){
+    System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
+    int[]MAX_LIST = {1000000000,500,10};
+    for(int MAX : MAX_LIST){
+      for(int size = 31250; size < 2000001; size*=2){
+        long qtime=0;
+        long btime=0;
+        //average of 5 sorts.
+        for(int trial = 0 ; trial <=5; trial++){
+          int []data1 = new int[size];
+          int []data2 = new int[size];
+          for(int i = 0; i < data1.length; i++){
+            data1[i] = (int)(Math.random()*MAX);
+            data2[i] = data1[i];
+          }
+          long t1,t2;
+          t1 = System.currentTimeMillis();
+          Merge.mergesort(data2);
+          t2 = System.currentTimeMillis();
+          qtime += t2 - t1;
+          t1 = System.currentTimeMillis();
+          Arrays.sort(data1);
+          t2 = System.currentTimeMillis();
+          btime+= t2 - t1;
+          if(!Arrays.equals(data1,data2)){
+            System.out.println("FAIL TO SORT!");
+            System.exit(0);
+          }
+        }
+        System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+      }
+      System.out.println();
+    }
+  }
 //consulting the barron's book soon.
 //barron's book has nothing on it.
 }
