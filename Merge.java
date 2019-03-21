@@ -7,54 +7,21 @@ public class Merge {
 
 /*sort the array from least to greatest value. This is a wrapper function*/
 public static void mergesort(int[] data){
-  //copying array.
-  /*
-  this for making it faster, learn to get it working first.
-  for (int i = 0; i < data.length; i++){
-    temp[i] = data[i];
-  }
-  */
-  merge(data, 0, data.length);
-}
-
-private static void merge(int[] data, int lo, int hi) {
-  if (lo >= hi) {
+  if (data.length <= 1){
     return;
   }
-
-  int round;
-  if ( (data.length % 2) = 0) {
-    round = data.length / 2;
-  }
   else {
-    round = (data.length / 2) + 1;
+    mergesortH(data, 0, data.length - 1);
+    //copyOfRange gets the copy of array.
   }
+}
 
-  for (int i  = 0; i < data.length; i++) {
-    //swapping if the one in the front is greater than the one in the back.
-    if (data[lo] > data[lo + i]) {
-      int count = data[lo];
-      data[lo] = data[lo + i];
-      data[lo + i] = count;
-    }
-    else {
-      /* there's a method called copyOfRange and this gets the copy of an array.
-      cut data[] in half using "round" instance variable.
-      yes
-      */
-
-    }
-  }
-//when there's two of the same element, just use the left one due to it being more stable.
-  merge(data[hi - round], lo, hi - 1);
-  merge(data[lo + round], lo + 1, hi);
-
-  /*
-  insertionsort(data[hi - round], lo, hi - 1);
-  insertionsort(data[lo + round], lo + 1, hi);
-  */
+private static void mergesortH(int[] data, int lo, int hi) {
 
 }
+
+private static void merge(int[] data, int[] temp, int[] result) {
+
 
 public static void insertionsort(int[] data, int lo, int hi)  {
   if (hi < lo) {
