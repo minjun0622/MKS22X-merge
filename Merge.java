@@ -17,11 +17,13 @@ public static void mergesort(int[] data){
 }
 
 private static void mergesortH(int[] data, int lo, int hi) {
+  if (data.length <= 40) {
+    insertionsort(data, lo, hi);
+  }
 
   mergesortH(data, lo, (lo + hi) / 2);
   mergesortH(data, (lo + hi) / 2 + 1, hi);
   merge(data, lo, hi);
-}
 }
 
 private static void merge(int[] data, int lo, int hi) {
@@ -73,7 +75,7 @@ public static void insertionsort(int[] data, int lo, int hi)  {
     data[count] = temp;
   }
 }
-
+/*
 private static void printAry(int[] data){
   String result = "";
     for (int i = 0; i < data.length; i++){
@@ -116,6 +118,7 @@ private static void printAry(int[] data){
       System.out.println();
     }
   }
+  */
 //consulting the barron's book soon.
 //barron's book has nothing on it.
 }
