@@ -27,7 +27,22 @@ private static void merge(int[] data, int lo, int hi) {
   int[] temp = new int[hi - lo + 1];
   int a = lo;
   int b = mid;
-  for (int i = 0;)
+  for (int i = 0; i < data.length; i++) {
+    if (a < mid && b <= hi){
+      if (data[a] <= data[b]) {
+        temp[i] = data[a];
+        a++;
+      }
+      else {
+        temp[i] = data[b];
+        b++;
+      }
+      else if (a >= mid) {
+        temp[i] = data[b];
+        b++;
+      }
+    }
+  }
 
 
 public static void insertionsort(int[] data, int lo, int hi)  {
