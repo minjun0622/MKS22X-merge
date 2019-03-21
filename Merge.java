@@ -17,10 +17,17 @@ public static void mergesort(int[] data){
 }
 
 private static void mergesortH(int[] data, int lo, int hi) {
-
+  mergesortH(data, lo, (lo + hi) / 2);
+  mergesortH(data, (lo + hi) / 2 + 1, hi);
+  merge(data, lo, hi);
 }
 
-private static void merge(int[] data, int[] temp, int[] result) {
+private static void merge(int[] data, int lo, int hi) {
+  int mid = (lo + hi) / 2 + 1;
+  int[] temp = new int[hi - lo + 1];
+  int a = lo;
+  int b = mid;
+  for (int i = 0;)
 
 
 public static void insertionsort(int[] data, int lo, int hi)  {
